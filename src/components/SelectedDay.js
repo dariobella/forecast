@@ -1,5 +1,5 @@
 
-export const Today = (props) => {
+export const SelectedDay = (props) => {
 
     return (
         <div className="today">
