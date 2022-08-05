@@ -2,8 +2,8 @@ import {useState} from "react";
 import './Search.css'
 import {Link, useNavigate} from "react-router-dom";
 
-export const Search = () => {
-    const [place, setPlace] = useState('')
+export const Search = (props) => {
+    const [place, setPlace] = useState(props.place || '')
     const navigate = useNavigate()
 
     function FormSubmit(e) {
@@ -12,7 +12,7 @@ export const Search = () => {
     }
 
     return (
-        <div className="searchForm">
+        <div className={props.className || 'large'}>
             <form id="searchForm" onSubmit={FormSubmit}>
                 <input
                     id="search"
