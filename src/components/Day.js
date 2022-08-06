@@ -1,12 +1,13 @@
+import './Day.css'
 
 export const Day = (props) => {
 
     return (
-        <div className="day">
-            <h2>{props.date}</h2>
-            <h3>{props.weather}</h3>
-            <h3>Max T {props.maxT}</h3>
-            <h3>Min T {props.minT}</h3>
+        <div className={`day ${props.class}`}>
+            <div className="date">{props.date}</div>
+            <div className="weather">{props.weather}</div>
+            <div className="maxT"v>Max T {props.maxT}°</div>
+            <div className="minT">Min T {props.minT}°</div>
         </div>
     )
 }
