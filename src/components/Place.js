@@ -2,8 +2,8 @@ import {useParams} from "react-router-dom";
 import {useEffect, useState} from "react";
 import {Day} from "./Day";
 import {SelectedDay} from "./SelectedDay";
-import "./Place.css"
 import {Search} from "./Search";
+import "./Place.css"
 
 export const Place = () => {
     let { place } = useParams()
@@ -13,36 +13,6 @@ export const Place = () => {
     const [weatherHourly, setWeatherHourly] = useState([])
     const [weatherDaily, setWeatherDaily] = useState([])
     const [selectedDay, setselectedDay] = useState(0)
-    const weatherCodes = {
-        0: 'sereno',
-        1: 'prevalentemente sereno',
-        2: 'nuvoloso',
-        3: 'coperto',
-        45: 'nebbia',
-        48: 'nebbia gelata',
-        51: 'pioviggine leggera',
-        53: 'pioviggine',
-        55: 'pioviggine',
-        56: 'pioviggine gelata',
-        57: 'pioviggine gelata',
-        61: 'pioggia leggera',
-        63: 'pioggia',
-        65: 'pioggia intensa',
-        66: 'pioggia gelata',
-        67: 'pioggia gelata',
-        71: 'nevicata leggera',
-        73: 'nevicata',
-        75: 'nevicata intensa',
-        77: 'nevicata granulosa',
-        80: 'rovesci leggeri',
-        81: 'rovesci',
-        82: 'rovesci violenti',
-        85: 'rovesci di neve',
-        86: 'rovesci di neve',
-        95: 'temporale',
-        96: 'temporale con grandine',
-        99: 'temporale con grandine',
-    }
 
     useEffect(() => {
         async function fetchWeather() {
@@ -63,7 +33,7 @@ export const Place = () => {
                             time: hourlyAPI.time[i].split('T')[1],  // converts from YYYY-MM-DDTHH:MM (API format) to HH:MM format
                             precipitation: hourlyAPI.precipitation[i],
                             T: parseInt(hourlyAPI.temperature_2m[i]),
-                            weather: weatherCodes[hourlyAPI.weathercode[i]],    // makes weather code human-readable
+                            weathercode: hourlyAPI.weathercode[i],
                             wind: hourlyAPI.windspeed_10m[i]
                         }
                         i++
@@ -76,7 +46,7 @@ export const Place = () => {
                 for (let i = 0; i < 6; i++) {
                     daily[i] = {
                         date: dailyAPI.time[i].split('-')[2] + '/' + dailyAPI.time[i].split('-')[1], // converts YYYY-MM-DD (API format) to DD/MM format
-                        weather: weatherCodes[dailyAPI.weathercode[i]], // makes weather code human-readable
+                        weathercode: dailyAPI.weathercode[i],
                         maxT: parseInt(dailyAPI.temperature_2m_max[i]),
                         minT: parseInt(dailyAPI.temperature_2m_min[i]),
                     }
@@ -98,25 +68,25 @@ export const Place = () => {
         <div className="placePage">
             <Search place={place} className={'small'} />
             <div className="days">
-                <div className="selectedDay">
-                    <SelectedDay
-                        weather={weatherHourly[selectedDay]}
-                    />
-                </div>
                 <div className="otherDays">
                     {
                         weatherDaily.map((w, i) => {
                             return  <button key={i} className="dayBtn" onClick={e => clickDayBtn(e, i)}>
                                 <Day key={i}
                                      date={w.date}
-                                     weather={w.weather}
+                                     weathercode={w.weathercode}
                                      maxT={w.maxT}
                                      minT={w.minT}
-                                     class={i === selectedDay ? 'selected' : ''}
+                                     selected={i === selectedDay ? 'selected' : ''}
                                 />
                             </button>
                         })
                     }
+                </div>
+                <div className="selectedDay">
+                    <SelectedDay
+                        weather={weatherHourly[selectedDay]}
+                    />
                 </div>
             </div>
         </div>

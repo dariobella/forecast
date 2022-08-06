@@ -1,13 +1,18 @@
+import img from '../img/img'
 import './Day.css'
 
 export const Day = (props) => {
 
     return (
-        <div className={`day ${props.class}`}>
+        <div className={`day ${props.selected}`}>
             <div className="date">{props.date}</div>
-            <div className="weather">{props.weather}</div>
-            <div className="maxT"v>Max T {props.maxT}°</div>
-            <div className="minT">Min T {props.minT}°</div>
+            <div className="weather">
+                <img src={img(props.weathercode)} />
+            </div>
+            <div className="T">
+                <div className="minT">{props.minT}°</div>
+                <div className="maxT"v>{props.maxT}°</div>
+            </div>
         </div>
     )
 }
