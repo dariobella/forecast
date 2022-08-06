@@ -1,7 +1,6 @@
 .selectedDay {
     display: flex;
     flex-direction: column;
-    justify-content: center;
     margin-bottom: 5px;
 }
 
@@ -36,4 +35,5 @@ td:nth-child(3) {
 
 .selectedDay .weatherIcon img {
     height: 35px;
+    padding-left: 30px;
 }

@@ -17,15 +17,15 @@ export const Search = (props) => {
                 <input
                     id="search"
                     type="text"
-                    placeholder="Search a place"
+                    placeholder="Cerca un luogo"
                     value={place}
                     onChange={e => setPlace(e.target.value)}
                 />
-                <Link to={`/place/${place}`} className="searchBtn">
+                <button type="submit" className="searchBtn">
                     <span className="material-icons-round searchIcon">
                         search
                     </span>
-                </Link>
+                </button>
             </form>
         </div>
     )
