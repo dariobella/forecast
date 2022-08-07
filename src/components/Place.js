@@ -15,7 +15,7 @@ export const Place = () => {
     const [selectedDay, setselectedDay] = useState(0)
 
     useEffect(() => {
-        async function fetchWeather() {
+        const fetchWeather = async () => {
             const requestLatLng = await fetch(`https://geocoding-api.open-meteo.com/v1/search?name=${place}&language=it`).then(res => res.json())
             setLat(parseFloat(requestLatLng.results[0].latitude))
             setLng(parseFloat(requestLatLng.results[0].longitude))
@@ -66,7 +66,7 @@ export const Place = () => {
 
     return (
         <div className="placePage">
-            <Search place={place} className={'small'} />
+            <Search place={place} className={'small'} autocompleteClick={true} />
             <div className="days">
                 <div className="otherDays">
                     {

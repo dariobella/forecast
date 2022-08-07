@@ -7,12 +7,9 @@
 }
 
 .small {
+    margin: 20px;
     display: flex;
     align-items: center;
-}
-
-.searchIcon {
-    color: dimgray;
 }
 
 .large .searchIcon {
@@ -20,6 +17,14 @@
 }
 
 .small .searchIcon {
+    font-size: 2rem;
+}
+
+.large .searchIconDisabled {
+    font-size: 2.5rem;
+}
+
+.small .searchIconDisabled {
     font-size: 2rem;
 }
 
@@ -34,7 +39,6 @@
 
 .small #searchForm {
     border-bottom: 3px solid skyblue;
-    margin: 20px;
 }
 
 #search {
@@ -62,6 +66,7 @@
 }
 
 .searchIcon {
+    color: dimgray;
     transition: transform .2s ease-in-out;
 }
 
@@ -69,4 +74,42 @@
     cursor: pointer;
     color: black;
     transform: scale(1.2);
+}
+
+.searchIconDisabled {
+    color: lightgray;
+}
+
+.container {
+    position: relative;
+    display: inline-block;
+}
+
+.autocomplete {
+    display: flex;
+    flex-direction: column;
+    position: absolute;
+    z-index: 99;
+    top: 100%;
+    left: 0;
+    right: 0;
+}
+
+.autocomplete button {
+    padding: 10px;
+    border: none;
+    border-right: 1px solid lightgray;
+    border-left: 1px solid lightgray;
+    border-bottom: 1px solid lightgray;
+    background-color: #fff;
+    font-size: 1rem;
+}
+
+.autocomplete button:hover {
+    cursor: pointer;
+    background-color: #f1f1f1;
+}
+
+.hideAutocomplete {
+    display: none;
 }
