@@ -1,5 +1,5 @@
 import './SelectedDay.css'
-import img from "../img/img";
+import img from "../img/img"
 
 export const SelectedDay = (props) => {
 

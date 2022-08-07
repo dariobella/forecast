@@ -1,6 +1,7 @@
-import {useState, useEffect, useRef} from "react";
+import {useState, useEffect, useRef} from "react"
+import {useNavigate} from "react-router-dom"
+
 import './Search.css'
-import {useNavigate} from "react-router-dom";
 
 export const Search = (props) => {
     const [place, setPlace] = useState(props.place || '')
@@ -48,7 +49,7 @@ export const Search = (props) => {
                         onChange={e => searchChange(e.target.value)}
                     />
                     <button type="submit" className="searchBtn">
-                    <span className={`material-icons-round ${autocompleteClick ? 'searchIcon' : 'searchIconDisabled'}`}>
+                    <span className={`material-symbols-rounded ${autocompleteClick ? 'searchIcon' : 'searchIconDisabled'}`}>
                         search
                     </span>
                     </button>

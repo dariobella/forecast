@@ -1,11 +1,14 @@
-import {useParams} from "react-router-dom";
-import {useEffect, useState} from "react";
-import {Day} from "./Day";
-import {SelectedDay} from "./SelectedDay";
-import {Search} from "./Search";
+import {useParams} from "react-router-dom"
+import {useContext, useEffect, useState} from "react"
+import {Day} from "./Day"
+import {SelectedDay} from "./SelectedDay"
+import {Search} from "./Search"
 import "./Place.css"
+import FavsContext from "../FavsContext"
 
 export const Place = () => {
+    const { favs, addFav, deleteFav } = useContext(FavsContext)
+    const [isFav, setIsFav] = useState(false)
     let { place } = useParams()
     const [lat, setLat] = useState(0.0)
     const [lng, setLng] = useState(0.0)
@@ -13,6 +16,14 @@ export const Place = () => {
     const [weatherHourly, setWeatherHourly] = useState([])
     const [weatherDaily, setWeatherDaily] = useState([])
     const [selectedDay, setselectedDay] = useState(0)
+
+    useEffect((() => {
+        if (favs?.includes(place)) {
+            setIsFav(true)
+        } else {
+            setIsFav(false)
+        }
+    }), [place, favs])
 
     useEffect(() => {
         const fetchWeather = async () => {
@@ -66,7 +77,14 @@ export const Place = () => {
 
     return (
         <div className="placePage">
-            <Search place={place} className={'small'} autocompleteClick={true} />
+            <div>
+                <Search place={place} className={'small'} autocompleteClick={true} />
+                <button className="favBtn" onClick={() => { addFav(place) }}>
+                    <span className={isFav ? 'material-symbols-rounded favIcon' : 'material-symbols-outlined noFavIcon'}>
+                        favorite
+                    </span>
+                </button>
+            </div>
             <div className="days">
                 <div className="otherDays">
                     {
