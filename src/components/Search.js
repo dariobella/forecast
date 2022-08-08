@@ -1,9 +1,11 @@
-import {useState, useEffect, useRef} from "react"
+import {useState, useEffect, useRef, useContext} from "react"
 import {useNavigate} from "react-router-dom"
 
 import './Search.css'
+import FavsContext from "../FavsContext";
 
 export const Search = (props) => {
+    const { favs } = useContext(FavsContext)
     const [place, setPlace] = useState(props.place || '')
     const [autocomplete, setAutocomplete] = useState([])
     const [autocompleteClick, setAutocompleteClick] = useState(props.autocompleteClick || false)
@@ -57,7 +59,13 @@ export const Search = (props) => {
                 <div className={`autocomplete ${autocompleteClick ? 'hideAutocomplete' : ''}`}>
                     {
                         autocomplete?.map((r) => {
-                            return <button onClick={() => autocompleteBtnClick(r.name)} key={r.id}> {r.name} </button>
+                            return  <button className="autocompleteResult" onClick={() => autocompleteBtnClick(r.name)} key={r.id}>
+                                        <div className="left"></div>
+                                        <div className="center">{r.name}</div>
+                                        <div className="right">
+                                            { favs.includes(r.name) && <span className="material-symbols-rounded">favorite</span> }
+                                        </div>
+                                    </button>
                         })
                     }
                 </div>

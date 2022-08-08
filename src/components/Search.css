@@ -113,3 +113,15 @@
 .hideAutocomplete {
     display: none;
 }
+
+.autocompleteResult {
+    display: flex;
+}
+
+.autocompleteResult .right {
+    justify-content: flex-end;
+}
+
+.autocompleteResult .right span {
+    color: red;
+}

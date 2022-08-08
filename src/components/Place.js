@@ -7,7 +7,7 @@ import "./Place.css"
 import FavsContext from "../FavsContext"
 
 export const Place = () => {
-    const { favs, addFav, deleteFav } = useContext(FavsContext)
+    const { favs, toggleFav } = useContext(FavsContext)
     const [isFav, setIsFav] = useState(false)
     let { place } = useParams()
     const [lat, setLat] = useState(0.0)
@@ -77,9 +77,9 @@ export const Place = () => {
 
     return (
         <div className="placePage">
-            <div>
+            <div className="placePageTop">
                 <Search place={place} className={'small'} autocompleteClick={true} />
-                <button className="favBtn" onClick={() => { addFav(place) }}>
+                <button className="favBtn" onClick={() => { toggleFav(place) }}>
                     <span className={isFav ? 'material-symbols-rounded favIcon' : 'material-symbols-outlined noFavIcon'}>
                         favorite
                     </span>

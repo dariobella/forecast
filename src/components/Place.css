@@ -23,6 +23,29 @@
 .favBtn {
     border: none;
     background-color: transparent;
-    padding: 0;
+    padding-left: 10px;
     margin: 0;
+}
+
+.placePageTop {
+    display: flex;
+    align-items: center;
+}
+
+.favBtn span {
+    font-size: 2.5rem;
+    transition: transform .2s ease-in-out;
+}
+
+.favBtn span:hover {
+    cursor: pointer;
+    transform: scale(1.2);
+}
+
+.favIcon {
+    color: red;
+}
+
+.noFavIcon {
+    color: gray;
 }

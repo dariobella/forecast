@@ -5,6 +5,7 @@ import './App.css';
 import {Navbar} from "./components/Navbar"
 import {Search} from "./components/Search"
 import {Place} from "./components/Place"
+import {Favs} from "./components/Favs";
 
 function App() {
   return (
@@ -14,6 +15,7 @@ function App() {
                 <Navbar />
                 <Routes>
                     <Route path="/" element={<Search />} />
+                    <Route path="/favs" element={<Favs />} />
                     <Route path="/place/:place" element={<Place />} />
                     <Route
                         path="*"

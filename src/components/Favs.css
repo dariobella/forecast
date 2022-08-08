@@ -1,0 +1,54 @@
+.favs {
+    display: flex;
+    justify-content: center;
+}
+
+.favWrap {
+    background-color: var(--table-bg);
+    border-radius: 20px;
+    padding: 20px;
+    margin: 25px;
+    width: 40%;
+}
+
+.favsList {
+    display: flex;
+    flex-direction: column;
+}
+
+.fav {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 15px;
+    border-bottom: 1px solid lightgray;
+    font-size: 1.2rem;
+}
+
+.favName {
+    width: 100%;
+    display: flex;
+}
+
+.favName:hover {
+    cursor: pointer;
+}
+
+.lastFav {
+    border-bottom: none;
+}
+
+.fav button {
+    border: none;
+    background-color: transparent;
+}
+
+.favDelete {
+    font-size: 1.8rem;
+    transition: transform .2s ease-in-out;
+}
+
+.favDelete:hover {
+    cursor: pointer;
+    transform: scale(1.2);
+}
