@@ -1,21 +1,21 @@
 import {useParams} from "react-router-dom"
 import {useContext, useEffect, useState} from "react"
+import FavsContext from "../FavsContext"
 import {Day} from "./Day"
 import {SelectedDay} from "./SelectedDay"
 import {Search} from "./Search"
 import "./Place.css"
-import FavsContext from "../FavsContext"
 
 export const Place = () => {
     const { favs, toggleFav } = useContext(FavsContext)
     const [isFav, setIsFav] = useState(false)
-    let { place } = useParams()
     const [lat, setLat] = useState(0.0)
     const [lng, setLng] = useState(0.0)
     const [timezone, setTimezone] = useState(0.0)
     const [weatherHourly, setWeatherHourly] = useState([])
     const [weatherDaily, setWeatherDaily] = useState([])
     const [selectedDay, setselectedDay] = useState(0)
+    let { place } = useParams()
 
     useEffect((() => {
         if (favs?.includes(place)) {
@@ -68,7 +68,7 @@ export const Place = () => {
         }
         fetchWeather()
 
-    }, [place, lat, lng])
+    }, [place])
 
     function clickDayBtn(e, i) {
         e.preventDefault()
@@ -78,7 +78,7 @@ export const Place = () => {
     return (
         <div className="placePage">
             <div className="placePageTop">
-                <Search place={place} className={'small'} autocompleteClick={true} />
+                <Search place={place} placeholder={place} className={'small'} autocompleteClick={true} />
                 <button className="favBtn" onClick={() => { toggleFav(place) }}>
                     <span className={isFav ? 'material-symbols-rounded favIcon' : 'material-symbols-outlined noFavIcon'}>
                         favorite
@@ -90,14 +90,14 @@ export const Place = () => {
                     {
                         weatherDaily.map((w, i) => {
                             return  <button key={i} className="dayBtn" onClick={e => clickDayBtn(e, i)}>
-                                <Day key={i}
-                                     date={w.date}
-                                     weathercode={w.weathercode}
-                                     maxT={w.maxT}
-                                     minT={w.minT}
-                                     selected={i === selectedDay ? 'selected' : ''}
-                                />
-                            </button>
+                                        <Day key={i}
+                                             date={w.date}
+                                             weathercode={w.weathercode}
+                                             maxT={w.maxT}
+                                             minT={w.minT}
+                                             selected={i === selectedDay ? 'selected' : ''}
+                                        />
+                                    </button>
                         })
                     }
                 </div>

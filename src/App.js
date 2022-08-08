@@ -1,11 +1,11 @@
 import {BrowserRouter as Router, Navigate, Route, Routes} from 'react-router-dom'
 import { FavsProvider } from './FavsContext'
 
-import './App.css';
 import {Navbar} from "./components/Navbar"
 import {Search} from "./components/Search"
 import {Place} from "./components/Place"
-import {Favs} from "./components/Favs";
+import {Favs} from "./components/Favs"
+import './App.css';
 
 function App() {
   return (

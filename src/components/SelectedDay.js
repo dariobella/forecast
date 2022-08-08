@@ -1,5 +1,5 @@
-import './SelectedDay.css'
 import img from "../img/img"
+import './SelectedDay.css'
 
 export const SelectedDay = (props) => {
 
@@ -52,17 +52,17 @@ export const SelectedDay = (props) => {
                     props.weather?.map((w, i) => {
                         if (i % 2 === 0) {
                             return  <tr key={i} className={i}>
-                                <td> { w.time } </td>
-                                <td className="weatherIcon">
-                                    <img src={img(w.weathercode)}/>
-                                </td>
-                                <td>
-                                    <span>{weatherCodes[w.weathercode]}</span>
-                                </td>
-                                <td> { w.T }° </td>
-                                <td> { w.precipitation } </td>
-                                <td> { w.wind } </td>
-                            </tr>
+                                        <td> { w.time } </td>
+                                        <td className="weatherIcon">
+                                            <img src={img(w.weathercode)}/>
+                                        </td>
+                                        <td>
+                                            <span>{weatherCodes[w.weathercode]}</span>
+                                        </td>
+                                        <td> { w.T }° </td>
+                                        <td> { w.precipitation } </td>
+                                        <td> { w.wind } </td>
+                                    </tr>
                         }
                     })
                 }

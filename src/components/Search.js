@@ -1,8 +1,8 @@
 import {useState, useEffect, useRef, useContext} from "react"
 import {useNavigate} from "react-router-dom"
 
+import FavsContext from "../FavsContext"
 import './Search.css'
-import FavsContext from "../FavsContext";
 
 export const Search = (props) => {
     const { favs } = useContext(FavsContext)
@@ -46,14 +46,14 @@ export const Search = (props) => {
                         ref={searchInput}
                         id="search"
                         type="text"
-                        placeholder="Cerca un luogo"
+                        placeholder={props.placeholder || 'Cerca un luogo'}
                         value={place}
                         onChange={e => searchChange(e.target.value)}
                     />
                     <button type="submit" className="searchBtn">
-                    <span className={`material-symbols-rounded ${autocompleteClick ? 'searchIcon' : 'searchIconDisabled'}`}>
-                        search
-                    </span>
+                        <span className={`material-symbols-rounded ${autocompleteClick ? 'searchIcon' : 'searchIconDisabled'}`}>
+                            search
+                        </span>
                     </button>
                 </form>
                 <div className={`autocomplete ${autocompleteClick ? 'hideAutocomplete' : ''}`}>

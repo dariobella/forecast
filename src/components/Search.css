@@ -116,6 +116,7 @@
 
 .autocompleteResult {
     display: flex;
+    align-items: center;
 }
 
 .autocompleteResult .right {
