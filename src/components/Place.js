@@ -28,11 +28,15 @@ export const Place = () => {
     useEffect(() => {
         const fetchWeather = async () => {
             const requestLatLng = await fetch(`https://geocoding-api.open-meteo.com/v1/search?name=${place}&language=it`).then(res => res.json())
+            console.log(requestLatLng)
             setLat(parseFloat(requestLatLng.results[0].latitude))
             setLng(parseFloat(requestLatLng.results[0].longitude))
             setTimezone(requestLatLng.results[0].timezone)
+            console.log({lat, lng, timezone})
             if (lat && lng && timezone) {
+                console.log(`https://api.open-meteo.com/v1/forecast?latitude=${lat}&longitude=${lng}&hourly=temperature_2m,precipitation,weathercode,windspeed_10m&daily=weathercode,temperature_2m_max,temperature_2m_min&timezone=${timezone}`)
                 const requestWeather = await fetch(`https://api.open-meteo.com/v1/forecast?latitude=${lat}&longitude=${lng}&hourly=temperature_2m,precipitation,weathercode,windspeed_10m&daily=weathercode,temperature_2m_max,temperature_2m_min&timezone=${timezone}`).then(res => res.json())
+                console.log(requestWeather)
                 const hourlyAPI = requestWeather.hourly
                 const dailyAPI = requestWeather.daily
 
@@ -68,7 +72,7 @@ export const Place = () => {
         }
         fetchWeather()
 
-    }, [place])
+    }, [place, lat, lng, timezone])
 
     function clickDayBtn(e, i) {
         e.preventDefault()
